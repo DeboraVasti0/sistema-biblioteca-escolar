@@ -1,0 +1,12 @@
+.layout {
+  display: flex;
+  height: 100vh;       /* era min-height, mudei pra height para a cadeia funcionar */
+}
+
+.content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 30px;
+  height: 100%;
+  box-sizing: border-box;
+}

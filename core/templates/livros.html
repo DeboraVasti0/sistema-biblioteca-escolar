@@ -1,0 +1,26 @@
+<h1>Livros disponíveis</h1>
+
+{% for material in materiais %}
+
+<div>
+    <h2>{{ material.titulo }}</h2>
+    <p>Autor: {{ material.autor }}</p>
+    <p>Tipo: {{ material.tipo }}</p>
+    <p>Quantidade disponível: {{ material.estoque }}</p>
+
+    {% if material.link_material %}
+        <p>
+            <a href="{{ material.link_material }}" target="_blank">
+                Acessar material digital
+            </a>
+        </p>
+    {% endif %}
+</div>
+
+<hr>
+
+{% empty %}
+
+<p>Nenhum livro cadastrado.</p>
+
+{% endfor %}

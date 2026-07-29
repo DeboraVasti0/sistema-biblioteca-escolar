@@ -1,0 +1,40 @@
+<h1>Biblioteca Milton</h1>
+
+<h2>Total de Alunos: {{ total_alunos }}</h2>
+<h2>Total de Materiais: {{ total_materiais }}</h2>
+<h2>Total de Retiradas: {{ total_retiradas }}</h2>
+<h2>Materiais com Estoque Baixo: {{ quantidade_estoque_baixo }}</h2>
+
+<ul>
+{% for material in estoque_baixo %}
+    <li>{{ material.titulo }} - Estoque: {{ material.estoque }}</li>
+{% empty %}
+    <li>Nenhum material com estoque baixo.</li>
+{% endfor %}
+</ul>
+
+<h2>Últimas Retiradas</h2>
+
+<ul>
+{% for retirada in ultimas_retiradas %}
+    <li>
+        {{ retirada.aluno }}
+        - {{ retirada.material }}
+        - {{ retirada.data_retirada }}
+    </li>
+{% empty %}
+    <li>Nenhuma retirada cadastrada.</li>
+{% endfor %}
+</ul>
+
+<h2>Materiais Mais Retirados</h2>
+
+<ul>
+{% for material in materiais_mais_retirados %}
+    <li>
+        {{ material.material__titulo }} - {{ material.total }} retirada(s)
+    </li>
+{% empty %}
+    <li>Nenhuma retirada registrada.</li>
+{% endfor %}
+</ul>
