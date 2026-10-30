@@ -420,3 +420,71 @@ button {
 .acoes-aluno .botao-salvar {
     margin: 0;
 }
+
+
+/* Centralização da primeira página */
+.home-wrapper {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.home {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+    color: #f0edf7;
+}
+
+@media (max-width: 600px) {
+    .home-wrapper {
+        left: 0;
+        padding: 15px;
+    }
+}
+
+/* Ajuste definitivo da tela inicial */
+.home-wrapper {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.home {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.home .botoes {
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .home-wrapper {
+        left: 0;
+    }
+}
