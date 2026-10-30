@@ -134,6 +134,79 @@ button {
     max-width: 420px;
 }
 
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 60px);
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 460px;
+    text-align: center;
+}
+
+.login-card h1 {
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.login-subtitle {
+    margin-bottom: 24px;
+    color: #c9c2e0;
+}
+
+.login-card .form-auth {
+    margin: 0 auto;
+}
+
+.login-card .form-auth button {
+    width: 100%;
+}
+
+.login-card .form-auth button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.login-forgot-link {
+    align-self: flex-end;
+    color: #c4a5fd;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.login-forgot-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.auth-feedback {
+    margin: 0;
+    color: #ddd6fe;
+    line-height: 1.5;
+}
+
+.auth-feedback-error {
+    color: #fca5a5;
+}
+
+.auth-back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #c4a5fd;
+    text-decoration: none;
+}
+
+.auth-back-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
 .form-material input,
 .form-material select,
 .form-auth input {
@@ -491,5 +564,21 @@ button {
 @media (max-width: 600px) {
     .home-wrapper {
         left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        min-height: calc(100vh - 150px);
+        padding: 16px;
+    }
+
+    .login-page {
+        min-height: calc(100vh - 150px);
+        padding: 16px 0;
     }
 }

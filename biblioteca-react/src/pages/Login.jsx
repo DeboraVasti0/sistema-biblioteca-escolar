@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
 import "./Page.css";
 
@@ -23,12 +23,6 @@ function Login() {
                 password
             });
 
-          console.log( 
-              "RESPOSTA COMPLETA:",
-               JSON.stringify(response.data, null, 2)
-      );
-
-            // Aceitar diferentes formatos de token
             const token = response.data.token;
             if (!token) {
                 setErro("O servidor não retornou o token.");
@@ -39,12 +33,6 @@ function Login() {
             localStorage.setItem("username", username);
 
             window.dispatchEvent(new Event("authChange"));
-
-            navigate("/dashboard");
-
-            // Atualizar autenticação do sistema
-            window.dispatchEvent(new Event("authChange"));
-
             navigate("/dashboard");
 
         } catch (error) {
@@ -56,47 +44,58 @@ function Login() {
     }
 
     return (
-        <div className="home">
-            <h1>Entrar</h1>
+        <section className="login-page">
+            <div className="login-card">
+                <h1>Entrar</h1>
+                <p className="login-subtitle">
+                    Acesse sua conta para continuar
+                </p>
 
-            <form className="form-auth" onSubmit={handleSubmit}>
+                <form className="form-auth" onSubmit={handleSubmit}>
 
-                <input
-                    type="text"
-                    placeholder="Usuário"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
+                    <input
+                        type="text"
+                        placeholder="Usuário"
+                        autoComplete="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
 
-                <input
-                    type="password"
-                    placeholder="Senha"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
+                    <input
+                        type="password"
+                        placeholder="Senha"
+                        autoComplete="current-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
 
-                {erro && <p className="erro">{erro}</p>}
+                    <Link className="login-forgot-link" to="/esqueci-senha">
+                        Esqueci minha senha
+                    </Link>
 
-                <button
-                    type="submit"
-                    className="btn-entrar"
-                    disabled={carregando}
-                >
-                    {carregando ? "Entrando..." : "Entrar"}
-                </button>
+                    {erro && <p className="erro">{erro}</p>}
 
-                <button
-                    type="button"
-                    className="btn-secondary"
-                    onClick={() => navigate("/")}
-                >
-                    Cancelar
-                </button>
+                    <button
+                        type="submit"
+                        className="btn-entrar"
+                        disabled={carregando}
+                    >
+                        {carregando ? "Entrando..." : "Entrar"}
+                    </button>
 
-            </form>
-        </div>
+                    <button
+                        type="button"
+                        className="btn-secondary"
+                        onClick={() => navigate("/")}
+                    >
+                        Voltar ao início
+                    </button>
+
+                </form>
+            </div>
+        </section>
     );
 }
 

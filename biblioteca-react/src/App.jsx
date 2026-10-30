@@ -15,6 +15,8 @@ import Alunos from "./pages/Alunos";
 import Retiradas from "./pages/Retiradas";
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
+import EsqueciSenha from "./pages/EsqueciSenha";
+import RedefinirSenha from "./pages/RedefinirSenha";
 import AdicionarMaterial from "./pages/AdicionarMaterial";
 import NovaRetirada from "./pages/NovaRetirada";
 import "./App.css";
@@ -51,6 +53,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/esqueci-senha" element={<EsqueciSenha />} />
+            <Route path="/redefinir-senha" element={<RedefinirSenha />} />
 
             <Route
               path="/dashboard"

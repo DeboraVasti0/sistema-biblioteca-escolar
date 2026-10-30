@@ -26,7 +26,13 @@
 }
 
 @media (max-width: 600px) {
+    .layout {
+        flex-direction: column;
+    }
+
     .conteudo-principal {
         margin-left: 0;
+        min-height: auto;
+        padding: 18px;
     }
 }

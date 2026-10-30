@@ -91,3 +91,22 @@
 .btn-sair:hover {
     background: #a83243;
 }
+
+@media (max-width: 600px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 16px 20px;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 12px;
+        font-size: 22px;
+    }
+
+    .menu-bloqueado {
+        margin-top: 12px;
+    }
+}
