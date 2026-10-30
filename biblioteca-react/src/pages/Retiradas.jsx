@@ -6,8 +6,20 @@ import "./Page.css";
 function Retiradas() {
 
     const [retiradas, setRetiradas] = useState([]);
+    const [busca, setBusca] = useState("");
 
     const navigate = useNavigate();
+
+    const retiradasFiltradas = retiradas.filter((retirada) =>
+        [
+            retirada.aluno_nome,
+            retirada.material_titulo,
+            retirada.data_retirada,
+            retirada.quantidade
+        ].some((valor) =>
+            String(valor ?? "").toLowerCase().includes(busca.trim().toLowerCase())
+        )
+    );
 
 
     useEffect(() => {
@@ -37,10 +49,20 @@ function Retiradas() {
         
         </button>
 
+            <input
+                className="barra-pesquisa"
+                type="search"
+                placeholder="Pesquisar por aluno, material ou data..."
+                value={busca}
+                onChange={(e) => setBusca(e.target.value)}
+            />
+
             <h2>Histórico de retiradas</h2>
 
 
-            {retiradas.map(retirada => (
+            {retiradasFiltradas.length === 0 ? (
+                <p>Nenhuma retirada encontrada.</p>
+            ) : retiradasFiltradas.map(retirada => (
 
                 <div key={retirada.id}>
 

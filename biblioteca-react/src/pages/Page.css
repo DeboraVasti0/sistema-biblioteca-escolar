@@ -129,6 +129,11 @@ button {
     box-shadow: 0 10px 30px rgba(0,0,0,.3);
 }
 
+.form-auth {
+    width: 100%;
+    max-width: 420px;
+}
+
 .form-material input,
 .form-material select,
 .form-auth input {

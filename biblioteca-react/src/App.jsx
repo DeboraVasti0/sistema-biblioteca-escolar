@@ -17,6 +17,7 @@ import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
 import AdicionarMaterial from "./pages/AdicionarMaterial";
 import NovaRetirada from "./pages/NovaRetirada";
+import "./App.css";
 
 function RotaProtegida({ children, autenticado }) {
   return autenticado ? children : <Navigate to="/login" replace />;
