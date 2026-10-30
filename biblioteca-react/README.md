@@ -14,17 +14,3 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-## Recuperação de senha
-
-O cadastro solicita um e-mail para que a API Django possa enviar o link de redefinição. Configure estas variáveis no ambiente do servidor Django; não grave credenciais SMTP no código:
-
-- `EMAIL_HOST`
-- `EMAIL_PORT` (padrão: `587`)
-- `EMAIL_USE_TLS` (padrão: `true`)
-- `EMAIL_HOST_USER`
-- `EMAIL_HOST_PASSWORD`
-- `DEFAULT_FROM_EMAIL`
-- `FRONTEND_URL` (URL pública desta aplicação, usada no link do e-mail)
-
-Contas criadas antes desta alteração precisam ter um e-mail válido cadastrado no Django Admin para receber o link.

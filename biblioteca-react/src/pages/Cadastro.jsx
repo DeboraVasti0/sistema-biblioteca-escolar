@@ -5,9 +5,7 @@ import "./Page.css";
 
 function Cadastro() {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [erro, setErro] = useState("");
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -16,16 +14,11 @@ function Cadastro() {
     try {
       await api.post("cadastro/", {
         username,
-        email,
         password
       });
       navigate("/login");
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
-      setErro(
-        error.response?.data?.erro ||
-        "Não foi possível concluir o cadastro. Tente novamente."
-      );
     }
   }
 
@@ -40,17 +33,6 @@ function Cadastro() {
             placeholder="Usuário"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            autoComplete="username"
-            required
-          />
-
-          <input
-            type="email"
-            placeholder="E-mail para recuperação de senha"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email"
-            required
           />
 
           <input
@@ -58,11 +40,7 @@ function Cadastro() {
             placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            autoComplete="new-password"
-            required
           />
-
-          {erro && <p className="erro">{erro}</p>}
 
           <button type="submit">
             Cadastrar

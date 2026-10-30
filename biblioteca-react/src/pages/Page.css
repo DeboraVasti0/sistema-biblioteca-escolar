@@ -173,40 +173,6 @@ button {
     opacity: 0.7;
 }
 
-.login-forgot-link {
-    align-self: flex-end;
-    color: #c4a5fd;
-    font-size: 0.95rem;
-    text-decoration: none;
-}
-
-.login-forgot-link:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.auth-feedback {
-    margin: 0;
-    color: #ddd6fe;
-    line-height: 1.5;
-}
-
-.auth-feedback-error {
-    color: #fca5a5;
-}
-
-.auth-back-link {
-    display: inline-block;
-    margin-top: 20px;
-    color: #c4a5fd;
-    text-decoration: none;
-}
-
-.auth-back-link:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-
 .form-material input,
 .form-material select,
 .form-auth input {

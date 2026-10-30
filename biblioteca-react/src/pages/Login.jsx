@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import "./Page.css";
 
@@ -70,10 +70,6 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-
-                    <Link className="login-forgot-link" to="/esqueci-senha">
-                        Esqueci minha senha
-                    </Link>
 
                     {erro && <p className="erro">{erro}</p>}
 
