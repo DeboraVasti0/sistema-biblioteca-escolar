@@ -41,3 +41,53 @@
   color: #f0edf7;
   box-sizing: border-box;
 }
+
+
+.menu-bloqueado {
+    margin-top: 35px;
+    padding: 15px;
+    color: white;
+    opacity: 0.8;
+}
+
+.menu-bloqueado p {
+    font-size: 14px;
+}
+
+.menu-login {
+    display: block;
+    margin-top: 20px;
+    padding: 12px;
+    text-align: center;
+    background: #35205e;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.menu-login:hover {
+    background: #493080;
+}
+
+.usuario-logado {
+    color: #d8c9ff;
+    margin: 20px;
+    font-size: 14px;
+}
+
+.btn-sair {
+    display: block;
+    width: calc(100% - 40px);
+    margin: 35px 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #8b2635;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-sair:hover {
+    background: #a83243;
+}

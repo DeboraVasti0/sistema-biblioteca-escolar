@@ -174,3 +174,249 @@ button {
 .barra-pesquisa::placeholder {
     color: #888;
 }
+
+
+/* Página de materiais */
+.page-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.materiais-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho */
+.materiais-cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.materiais-cabecalho .barra-pesquisa {
+    width: 350px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Grade de materiais */
+.materiais-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+/* Cartões */
+.material-card {
+    background: #191329;
+    border: 1px solid #49316d;
+    border-radius: 12px;
+    padding: 22px;
+    box-sizing: border-box;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.material-card h2 {
+    font-size: 20px;
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+}
+
+.material-card p {
+    margin: 3px 0;
+}
+
+.material-card a {
+    color: #a78bfa;
+}
+
+/* Botões */
+.material-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.material-acoes button {
+    flex: 1;
+}
+
+/* Responsividade */
+@media (max-width: 1000px) {
+    .materiais-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .materiais-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .materiais-container {
+        padding: 15px;
+    }
+
+    .materiais-cabecalho {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .materiais-cabecalho .barra-pesquisa {
+        width: 100%;
+    }
+}
+
+
+/* PÁGINA DE ALUNOS */
+
+.pagina-alunos {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 25px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.pagina-alunos h1 {
+    margin-bottom: 20px;
+}
+
+.botao-adicionar,
+.botao-salvar {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.botao-adicionar:hover,
+.botao-salvar:hover {
+    background: #6d28d9;
+}
+
+.formulario-aluno {
+    background: #1b1433;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.formulario-aluno input {
+    width: 100%;
+    padding: 13px;
+    box-sizing: border-box;
+    border-radius: 9px;
+    border: 1px solid #49316d;
+    background: #2b2149;
+    color: white;
+}
+
+.lista-alunos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.card-aluno {
+    background: #191329;
+    border: 1px solid #49316d;
+    border-radius: 12px;
+    padding: 22px;
+    color: white;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.card-aluno h2 {
+    margin-top: 0;
+    color: #d8b4fe;
+}
+
+.card-aluno p {
+    margin: 8px 0;
+}
+
+@media (max-width: 1000px) {
+    .lista-alunos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .lista-alunos {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* AÇÕES DOS ALUNOS */
+
+.acoes-aluno {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.acoes-aluno button {
+    flex: 1;
+    min-width: 100px;
+    padding: 11px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.botao-editar {
+    background: #7c3aed;
+    color: white;
+}
+
+.botao-editar:hover {
+    background: #6d28d9;
+}
+
+.botao-excluir {
+    background: #dc3545;
+    color: white;
+}
+
+.botao-excluir:hover {
+    background: #b91c1c;
+}
+
+.botao-cancelar {
+    background: #51476d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.acoes-aluno .botao-salvar {
+    margin: 0;
+}
