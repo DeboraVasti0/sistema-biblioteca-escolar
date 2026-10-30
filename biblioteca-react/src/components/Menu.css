@@ -110,3 +110,122 @@
         margin-top: 12px;
     }
 }
+
+
+/* RESPONSIVIDADE DO SISTEMA */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+img,
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.conteudo-principal {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+/* TABLETS E CELULARES */
+
+@media (max-width: 768px) {
+    .conteudo-principal {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+        padding-top: 75px;
+    }
+
+    .page,
+    .page-container,
+    .materiais-container,
+    .pagina-alunos {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 15px;
+    }
+
+    .materiais-grid,
+    .lista-alunos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .barra-pesquisa {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-auth,
+    .form-material,
+    .formulario-aluno {
+        width: 100%;
+        padding: 18px;
+    }
+
+    .button-group,
+    .form-buttons {
+        flex-wrap: wrap;
+    }
+}
+
+/* CELULARES PEQUENOS */
+
+@media (max-width: 480px) {
+    .conteudo-principal {
+        padding: 12px;
+        padding-top: 75px;
+    }
+
+    .materiais-grid,
+    .lista-alunos {
+        grid-template-columns: 1fr;
+    }
+
+    .pagina-alunos h1,
+    .page h1 {
+        font-size: 24px;
+    }
+
+    .card-aluno,
+    .material-card {
+        padding: 16px;
+    }
+
+    .acoes-aluno {
+        flex-direction: column;
+    }
+
+    .acoes-aluno button {
+        width: 100%;
+    }
+
+    .botoes,
+    .button-group,
+    .form-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .botoes button,
+    .button-group button,
+    .form-buttons button {
+        width: 100%;
+    }
+}
