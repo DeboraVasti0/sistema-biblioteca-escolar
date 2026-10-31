@@ -27,6 +27,7 @@
 }
 
 .menu-brand-icon {
+  display: none;
   flex: 0 0 auto;
 }
 
@@ -56,6 +57,7 @@
 }
 
 .menu-icon {
+  display: none;
   flex: 0 0 auto;
   min-width: 24px;
 }
@@ -64,6 +66,7 @@
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-left: 0;
 }
 
 .sidebar a:hover {
