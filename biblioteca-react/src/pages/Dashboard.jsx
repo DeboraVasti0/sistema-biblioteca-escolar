@@ -27,23 +27,23 @@ function Dashboard(){
             <div className="cards">
 
             <div className="card">
-                    <h2>👨‍🎓 Alunos</h2>
+                    <h2>Alunos</h2>
                     <p>{dados.total_alunos}</p>
                 </div>
 
             <div className="card">
-    <h2>📚 Materiais</h2>
+    <h2>Materiais</h2>
     <p>{dados.total_materiais}</p>
             </div>
 
                 <div className="card">
-                    <h2>📖 Retiradas</h2>
+                    <h2>Retiradas</h2>
                     <p>{dados.total_retiradas}</p>
                 </div>
 
 
                 <div className="card">
-                    <h2>⚠️ Estoque baixo</h2>
+                    <h2>Estoque baixo</h2>
                     <p>{dados.estoque_baixo}</p>
                 </div>
 
