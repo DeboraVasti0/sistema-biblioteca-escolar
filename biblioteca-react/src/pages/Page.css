@@ -1,7 +1,7 @@
 .home-wrapper {
   position: fixed;
   top: 0;
-  left: 250px;   /* mesma largura do sidebar */
+  left: 250px;
   right: 0;
   bottom: 0;
   display: flex;
@@ -491,7 +491,7 @@ button {
     color: #f0edf7;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .home-wrapper {
         left: 0;
         padding: 15px;
@@ -527,13 +527,13 @@ button {
     align-items: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .home-wrapper {
         left: 0;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .home-wrapper {
         position: relative;
         top: auto;
@@ -546,5 +546,89 @@ button {
     .login-page {
         min-height: calc(100vh - 150px);
         padding: 16px 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .page {
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    .form-auth,
+    .form-material,
+    .formulario-aluno {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .barra-pesquisa {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-buttons,
+    .button-group {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 600px) {
+    .page {
+        margin: 12px auto;
+    }
+
+    .page h1,
+    .materiais-container > h1,
+    .pagina-alunos > h1 {
+        font-size: 24px;
+    }
+
+    .form-auth,
+    .form-material,
+    .formulario-aluno {
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .form-buttons,
+    .button-group,
+    .material-acoes,
+    .acoes-aluno {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .form-buttons button,
+    .button-group button,
+    .material-acoes button,
+    .acoes-aluno button {
+        width: 100%;
+    }
+
+    .pagina-alunos {
+        padding: 10px 0;
+    }
+
+    .materiais-container {
+        padding: 0;
+    }
+
+    .materiais-cabecalho .btn-primary,
+    .botao-adicionar {
+        width: 100%;
+    }
+
+    .home h1 {
+        font-size: 2rem;
+    }
+
+    .home p {
+        font-size: 1rem;
+    }
+
+    .home .botoes {
+        flex-wrap: wrap;
     }
 }

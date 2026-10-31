@@ -1,231 +1,247 @@
 .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
   width: 250px;
   height: 100vh;
-  background: #1a103d;
-  position: fixed;
-  left: 0;
-  top: 0;
   padding: 20px;
+  background: #1a103d;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .sidebar h2 {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 24px;
   color: #ffffff;
-  margin-bottom: 30px;
   font-size: 30px;
+  line-height: 1.15;
+}
+
+.menu-brand-icon {
+  flex: 0 0 auto;
+}
+
+.menu-brand-label {
+  min-width: 0;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 }
 
 .sidebar a {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
+  margin: 0;
   padding: 12px 15px;
-  margin-bottom: 10px;
-  color: #e9d5ff;
-  text-decoration: none;
   border-radius: 8px;
+  color: #e9d5ff;
   font-size: 18px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.menu-icon {
+  flex: 0 0 auto;
+  min-width: 24px;
+}
+
+.menu-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar a:hover {
   background: #6d28d9;
 }
 
-.home {
+.menu-bloqueado {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 40px); /* desconta os 20px de padding topo+baixo do .page */
-  width: 100%;
-  text-align: center;
-  color: #f0edf7;
-  box-sizing: border-box;
-}
-
-
-.menu-bloqueado {
-    margin-top: 35px;
-    padding: 15px;
-    color: white;
-    opacity: 0.8;
+  align-items: stretch;
+  gap: 8px;
+  margin: 0;
+  padding: 12px 15px;
+  color: white;
+  opacity: 0.8;
 }
 
 .menu-bloqueado p {
-    font-size: 14px;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .menu-login {
-    display: block;
-    margin-top: 20px;
-    padding: 12px;
-    text-align: center;
-    background: #35205e;
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
+  display: block;
+  margin: 8px 0 0;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #35205e;
+  color: white;
+  text-align: center;
+  text-decoration: none;
 }
 
 .menu-login:hover {
-    background: #493080;
+  background: #493080;
 }
 
 .usuario-logado {
-    color: #d8c9ff;
-    margin: 20px;
-    font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  margin: 8px 20px 20px;
+  color: #d8c9ff;
+  font-size: 14px;
+  overflow-wrap: anywhere;
 }
 
 .btn-sair {
-    display: block;
-    width: calc(100% - 40px);
-    margin: 35px 20px;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    background: #8b2635;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  width: calc(100% - 40px);
+  margin: auto 20px 34px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #8b2635;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .btn-sair:hover {
-    background: #a83243;
+  background: #a83243;
 }
-
-@media (max-width: 600px) {
-    .sidebar {
-        position: static;
-        width: 100%;
-        height: auto;
-        min-height: 0;
-        padding: 16px 20px;
-    }
-
-    .sidebar h2 {
-        margin-bottom: 12px;
-        font-size: 22px;
-    }
-
-    .menu-bloqueado {
-        margin-top: 12px;
-    }
-}
-
-
-/* RESPONSIVIDADE DO SISTEMA */
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-    width: 100%;
-    min-height: 100%;
-    margin: 0;
-}
-
-img,
-input,
-select,
-textarea {
-    max-width: 100%;
-}
-
-.conteudo-principal {
-    margin-left: 250px;
-    width: calc(100% - 250px);
-    min-height: 100vh;
-    padding: 25px;
-    box-sizing: border-box;
-}
-
-/* TABLETS E CELULARES */
 
 @media (max-width: 768px) {
-    .conteudo-principal {
-        margin-left: 0;
-        width: 100%;
-        padding: 15px;
-        padding-top: 75px;
-    }
+  .sidebar {
+    width: 190px;
+    padding: 16px 12px;
+  }
 
-    .page,
-    .page-container,
-    .materiais-container,
-    .pagina-alunos {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 15px;
-    }
+  .sidebar h2 {
+    margin-bottom: 16px;
+    font-size: 21px;
+  }
 
-    .materiais-grid,
-    .lista-alunos {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-    }
+  .menu-links {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
 
-    .barra-pesquisa {
-        width: 100%;
-        max-width: 100%;
-    }
+  .sidebar a {
+    display: flex;
+    width: 100%;
+    padding: 10px 8px;
+    font-size: 14px;
+  }
 
-    .form-auth,
-    .form-material,
-    .formulario-aluno {
-        width: 100%;
-        padding: 18px;
-    }
+  .usuario-logado {
+    margin: 4px 8px 16px;
+  }
 
-    .button-group,
-    .form-buttons {
-        flex-wrap: wrap;
-    }
+  .btn-sair {
+    width: calc(100% - 16px);
+    margin: auto 8px 16px;
+  }
+
+  .menu-bloqueado {
+    align-items: stretch;
+    flex-direction: column;
+    margin: 0;
+    padding: 8px;
+  }
+
+  .menu-login {
+    display: flex;
+    margin: 0;
+    padding: 10px 8px;
+    gap: 8px;
+    text-align: left;
+  }
 }
 
-/* CELULARES PEQUENOS */
-
 @media (max-width: 480px) {
-    .conteudo-principal {
-        padding: 12px;
-        padding-top: 75px;
-    }
+  .sidebar {
+    width: 64px;
+    align-items: center;
+    padding: 12px 6px;
+  }
 
-    .materiais-grid,
-    .lista-alunos {
-        grid-template-columns: 1fr;
-    }
+  .sidebar h2 {
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 22px;
+  }
 
-    .pagina-alunos h1,
-    .page h1 {
-        font-size: 24px;
-    }
+  .menu-brand-label,
+  .menu-label,
+  .menu-lock-message {
+    display: none;
+  }
 
-    .card-aluno,
-    .material-card {
-        padding: 16px;
-    }
+  .menu-links {
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+  }
 
-    .acoes-aluno {
-        flex-direction: column;
-    }
+  .sidebar a {
+    justify-content: center;
+    width: 48px;
+    height: 44px;
+    padding: 8px;
+    font-size: 14px;
+  }
 
-    .acoes-aluno button {
-        width: 100%;
-    }
+  .menu-icon {
+    min-width: 0;
+  }
 
-    .botoes,
-    .button-group,
-    .form-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
+  .usuario-logado {
+    justify-content: center;
+    width: 48px;
+    margin: 4px 0 14px;
+  }
 
-    .botoes button,
-    .button-group button,
-    .form-buttons button {
-        width: 100%;
-    }
+  .btn-sair {
+    width: 48px;
+    height: 44px;
+    margin: auto 0 8px;
+    padding: 8px;
+  }
+
+  .menu-bloqueado {
+    align-items: center;
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .menu-login {
+    justify-content: center;
+    width: 48px;
+    height: 44px;
+    padding: 8px;
+  }
 }

@@ -17,16 +17,20 @@ function Menu({ autenticado }) {
     return (
         <div className="sidebar">
 
-            <h2>📚 Biblioteca Milton</h2>
+            <h2>
+                <span className="menu-brand-icon" aria-hidden="true">📚</span>
+                <span className="menu-brand-label">Biblioteca Milton</span>
+            </h2>
 
             {!autenticado ? (
 
                 <div className="menu-bloqueado">
-                    <p>🔒 Acesso bloqueado</p>
-                    <p>Faça login para acessar o sistema.</p>
+                    <p className="menu-lock-message">🔒 Acesso bloqueado</p>
+                    <p className="menu-lock-message">Faça login para acessar o sistema.</p>
 
-                    <Link to="/login" className="menu-login">
-                        🔑 Entrar
+                    <Link to="/login" className="menu-login" aria-label="Entrar">
+                        <span className="menu-icon" aria-hidden="true">🔑</span>
+                        <span className="menu-label">Entrar</span>
                     </Link>
                 </div>
 
@@ -34,24 +38,25 @@ function Menu({ autenticado }) {
 
                 <>
                     <p className="usuario-logado">
-                        👤 {localStorage.getItem("username")}
+                        <span className="menu-icon" aria-hidden="true">👤</span>
+                        <span className="menu-label">{localStorage.getItem("username")}</span>
                     </p>
 
-                    <Link to="/">🏠 Home</Link>
-
-                    <Link to="/dashboard">📊 Dashboard</Link>
-
-                    <Link to="/materiais">📚 Materiais</Link>
-
-                    <Link to="/alunos">👨‍🎓 Alunos</Link>
-
-                    <Link to="/retiradas">📖 Retiradas</Link>
+                    <nav className="menu-links" aria-label="Navegação principal">
+                        <Link to="/" aria-label="Home"><span className="menu-icon" aria-hidden="true">🏠</span><span className="menu-label">Home</span></Link>
+                        <Link to="/dashboard" aria-label="Dashboard"><span className="menu-icon" aria-hidden="true">📊</span><span className="menu-label">Dashboard</span></Link>
+                        <Link to="/materiais" aria-label="Materiais"><span className="menu-icon" aria-hidden="true">📚</span><span className="menu-label">Materiais</span></Link>
+                        <Link to="/alunos" aria-label="Alunos"><span className="menu-icon" aria-hidden="true">👨‍🎓</span><span className="menu-label">Alunos</span></Link>
+                        <Link to="/retiradas" aria-label="Retiradas"><span className="menu-icon" aria-hidden="true">📖</span><span className="menu-label">Retiradas</span></Link>
+                    </nav>
 
                     <button
                         className="btn-sair"
                         onClick={sair}
+                        aria-label="Sair"
                     >
-                        🚪 Sair
+                        <span className="menu-icon" aria-hidden="true">🚪</span>
+                        <span className="menu-label">Sair</span>
                     </button>
                 </>
 
