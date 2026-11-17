@@ -9,6 +9,7 @@ function Retiradas() {
     const [busca, setBusca] = useState("");
 
     const navigate = useNavigate();
+    const professor = localStorage.getItem("tipo") === "professor";
 
     const retiradasFiltradas = retiradas.filter((retirada) =>
         [
@@ -22,8 +23,7 @@ function Retiradas() {
     );
 
 
-    useEffect(() => {
-
+    function carregarRetiradas() {
         api.get("retiradas/")
         .then(response => {
             setRetiradas(response.data);
@@ -31,8 +31,32 @@ function Retiradas() {
         .catch(error => {
             console.log(error);
         });
+    }
 
+    useEffect(() => {
+        carregarRetiradas();
     }, []);
+
+
+    async function registrarDevolucao(retirada) {
+        const confirmar = window.confirm(
+            `Confirmar a devolução de ${retirada.quantidade}x "${retirada.material_titulo}" por ${retirada.aluno_nome}?`
+        );
+
+        if (!confirmar) return;
+
+        try {
+            await api.post(`retiradas/${retirada.id}/devolver/`);
+            alert("Devolução registrada! O material voltou ao estoque.");
+            carregarRetiradas();
+        } catch (error) {
+            console.error("Erro ao registrar devolução:", error.response?.data || error);
+            alert(
+                "Não foi possível registrar a devolução: " +
+                JSON.stringify(error.response?.data || "Erro de conexão")
+            );
+        }
+    }
 
 
     return (
@@ -41,13 +65,14 @@ function Retiradas() {
             <h1>Retiradas</h1>
 
 
-         <button
-        className="btn-primary"
-        onClick={() => navigate("/nova-retirada")}>
-        
-        Nova Retirada
-        
-        </button>
+            {professor && (
+                <button
+                    className="btn-primary"
+                    onClick={() => navigate("/nova-retirada")}
+                >
+                    Nova Retirada
+                </button>
+            )}
 
             <input
                 className="barra-pesquisa"
@@ -81,6 +106,22 @@ function Retiradas() {
                     <p>
                         Data: {retirada.data_retirada}
                     </p>
+
+                    <p>
+                        Situação:{" "}
+                        {retirada.data_devolucao
+                            ? `Devolvida em ${retirada.data_devolucao}`
+                            : "Em aberto"}
+                    </p>
+
+                    {professor && !retirada.data_devolucao && (
+                        <button
+                            className="btn-primary"
+                            onClick={() => registrarDevolucao(retirada)}
+                        >
+                            Registrar devolução
+                        </button>
+                    )}
 
                     <hr/>
 

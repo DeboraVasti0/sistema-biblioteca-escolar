@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
+  const usuario = localStorage.getItem("token")
+    ? localStorage.getItem("username")
+    : null;
 
   return (
     <div className="home-wrapper">
@@ -11,21 +14,36 @@ function Home() {
         <h1>Biblioteca Milton</h1>
         <p>Sistema de gerenciamento de biblioteca escolar</p>
 
-        <div className="botoes">
-          <button
-            className="btn-entrar"
-            onClick={() => navigate("/login")}
-          >
-            Entrar
-          </button>
+        {usuario ? (
+          <>
+            <p>Olá, {usuario}! Você já está conectado.</p>
 
-          <button
-            className="btn-cadastrar"
-            onClick={() => navigate("/cadastro")}
-          >
-            Cadastrar
-          </button>
-        </div>
+            <div className="botoes">
+              <button
+                className="btn-entrar"
+                onClick={() => navigate("/dashboard")}
+              >
+                Ir para o Dashboard
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="botoes">
+            <button
+              className="btn-entrar"
+              onClick={() => navigate("/login")}
+            >
+              Entrar
+            </button>
+
+            <button
+              className="btn-cadastrar"
+              onClick={() => navigate("/cadastro")}
+            >
+              Cadastrar
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

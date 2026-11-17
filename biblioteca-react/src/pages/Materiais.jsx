@@ -10,6 +10,7 @@ function Materiais() {
     const [carregando, setCarregando] = useState(true);
 
     const navigate = useNavigate();
+    const professor = localStorage.getItem("tipo") === "professor";
 
     // Carregar materiais da API
     async function carregarMateriais() {
@@ -122,12 +123,14 @@ function Materiais() {
                     onChange={(e) => setBusca(e.target.value)}
                 />
 
-                <button
-                    className="btn-primary"
-                    onClick={() => navigate("/adicionar-material")}
-                >
-                    + Adicionar material
-                </button>
+                {professor && (
+                    <button
+                        className="btn-primary"
+                        onClick={() => navigate("/adicionar-material")}
+                    >
+                        + Adicionar material
+                    </button>
+                )}
             </div>
 
             {carregando ? (
@@ -163,6 +166,7 @@ function Materiais() {
                                 </p>
                             )}
 
+                            {professor && (
                             <div className="material-acoes">
                                 <button
                                     className="btn-primary"
@@ -178,6 +182,7 @@ function Materiais() {
                                     Excluir
                                 </button>
                             </div>
+                            )}
 
                         </div>
                     ))}

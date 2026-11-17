@@ -1,9 +1,10 @@
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.shortcuts import render
+from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
@@ -68,9 +69,31 @@ class AlunoViewSet(viewsets.ModelViewSet):
 
 # Retiradas: aluno consulta o histórico, professor registra.
 class RetiradaViewSet(viewsets.ModelViewSet):
-    queryset = Retirada.objects.all()
+    queryset = Retirada.objects.select_related("aluno", "material").order_by(
+        "-data_retirada", "-id"
+    )
     serializer_class = RetiradaSerializer
     permission_classes = [IsProfessorOrReadOnly]
+
+    # POST /api/retiradas/<id>/devolver/ — registra a devolução.
+    @action(
+        detail=True,
+        methods=["post"],
+        permission_classes=[IsAuthenticated, IsProfessor],
+    )
+    def devolver(self, request, pk=None):
+        retirada = self.get_object()
+
+        if retirada.devolvida:
+            return Response(
+                {"erro": "Esta retirada já foi devolvida."},
+                status=400
+            )
+
+        retirada.data_devolucao = timezone.localdate()
+        retirada.save()  # o save() devolve a quantidade ao estoque
+
+        return Response(self.get_serializer(retirada).data)
 
 
 @api_view(['GET'])
