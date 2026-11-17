@@ -1,5 +1,39 @@
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+
+
+class Perfil(models.Model):
+    PROFESSOR = 'professor'
+    ALUNO = 'aluno'
+    TIPOS = [
+        (PROFESSOR, 'Professor'),
+        (ALUNO, 'Aluno'),
+    ]
+
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='perfil',
+    )
+    tipo = models.CharField(max_length=20, choices=TIPOS, default=ALUNO)
+
+    def __str__(self):
+        return f'{self.user.username} ({self.get_tipo_display()})'
+
+
+def tipo_do_usuario(user):
+    """Retorna 'professor' ou 'aluno'.
+
+    Superusuários e membros da equipe (is_staff) são sempre professores.
+    Usuários sem perfil são tratados como aluno (somente consulta).
+    """
+    if not user or not user.is_authenticated:
+        return None
+    if user.is_superuser or user.is_staff:
+        return Perfil.PROFESSOR
+    perfil = getattr(user, 'perfil', None)
+    return perfil.tipo if perfil else Perfil.ALUNO
 
 
 class Aluno(models.Model):

@@ -1,10 +1,15 @@
+from django.contrib.auth.models import User
+from django.db.models import Sum
 from django.shortcuts import render
 from rest_framework import viewsets
-from rest_framework.decorators import api_view
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from .models import Material, Aluno, Retirada
-from django.db.models import Sum
-from .serializers import MaterialSerializer, AlunoSerializer, RetiradaSerializer
+
+from .models import Aluno, Material, Perfil, Retirada, tipo_do_usuario
+from .permissions import IsProfessor, IsProfessorOrReadOnly
+from .serializers import AlunoSerializer, MaterialSerializer, RetiradaSerializer
 
 
 def dashboard(request):
@@ -39,7 +44,7 @@ def dashboard(request):
 
 def livros(request):
     materiais = Material.objects.all()
-    
+
     context = {
         'materiais': materiais
     }
@@ -47,20 +52,29 @@ def livros(request):
     return render(request, 'livros.html', context)
 
 
+# Materiais: aluno consulta, professor gerencia.
 class MaterialViewSet(viewsets.ModelViewSet):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
+    permission_classes = [IsProfessorOrReadOnly]
 
+
+# Alunos: dados pessoais (RA, turma) — somente professores.
 class AlunoViewSet(viewsets.ModelViewSet):
     queryset = Aluno.objects.all()
     serializer_class = AlunoSerializer
+    permission_classes = [IsAuthenticated, IsProfessor]
 
 
+# Retiradas: aluno consulta o histórico, professor registra.
 class RetiradaViewSet(viewsets.ModelViewSet):
     queryset = Retirada.objects.all()
     serializer_class = RetiradaSerializer
+    permission_classes = [IsProfessorOrReadOnly]
+
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def dashboard_api(request):
 
     dados = {
@@ -68,15 +82,14 @@ def dashboard_api(request):
         "total_materiais": Material.objects.count(),
         "total_retiradas": Retirada.objects.count(),
         "estoque_baixo": Material.objects.filter(estoque__lt=5).count(),
+        # Usado pelo frontend logo após o login para saber o perfil.
+        "usuario": {
+            "username": request.user.username,
+            "tipo": tipo_do_usuario(request.user),
+        },
     }
 
     return Response(dados)
-
-from django.contrib.auth.models import User
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
 
 
 @api_view(["POST"])
@@ -102,9 +115,15 @@ def cadastro(request):
         password=password
     )
 
+    # Cadastro público sempre cria ALUNO. Professores são promovidos
+    # pelo admin do Django (Perfil.tipo = professor ou "membro da equipe").
+    Perfil.objects.create(user=user, tipo=Perfil.ALUNO)
+
     token = Token.objects.create(user=user)
 
     return Response({
         "token": token.key,
-        "username": user.username
+        "username": user.username,
+        "tipo": Perfil.ALUNO,
     })
+

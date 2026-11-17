@@ -29,8 +29,15 @@ function Login() {
                 return;
             }
 
+            // Descobre o perfil (professor/aluno) usando o token recebido.
+            const perfil = await api.get("dashboard/", {
+                headers: { Authorization: `Token ${token}` }
+            });
+            const tipo = perfil.data.usuario?.tipo || "aluno";
+
             localStorage.setItem("token", token);
             localStorage.setItem("username", username);
+            localStorage.setItem("tipo", tipo);
 
             window.dispatchEvent(new Event("authChange"));
             navigate("/dashboard");
