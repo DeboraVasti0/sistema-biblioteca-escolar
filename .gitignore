@@ -14,7 +14,7 @@ media/
 
 # Banco de dados e backups
 *.sqlite3
-*.sqlite3.backup
+*.sqlite3.backup*
 
 # React / Node
 node_modules/
