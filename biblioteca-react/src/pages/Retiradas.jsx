@@ -38,27 +38,6 @@ function Retiradas() {
     }, []);
 
 
-    async function registrarDevolucao(retirada) {
-        const confirmar = window.confirm(
-            `Confirmar a devolução de ${retirada.quantidade}x "${retirada.material_titulo}" por ${retirada.aluno_nome}?`
-        );
-
-        if (!confirmar) return;
-
-        try {
-            await api.post(`retiradas/${retirada.id}/devolver/`);
-            alert("Devolução registrada! O material voltou ao estoque.");
-            carregarRetiradas();
-        } catch (error) {
-            console.error("Erro ao registrar devolução:", error.response?.data || error);
-            alert(
-                "Não foi possível registrar a devolução: " +
-                JSON.stringify(error.response?.data || "Erro de conexão")
-            );
-        }
-    }
-
-
     return (
         <div>
 
@@ -113,15 +92,6 @@ function Retiradas() {
                             ? `Devolvida em ${retirada.data_devolucao}`
                             : "Em aberto"}
                     </p>
-
-                    {professor && !retirada.data_devolucao && (
-                        <button
-                            className="btn-primary"
-                            onClick={() => registrarDevolucao(retirada)}
-                        >
-                            Registrar devolução
-                        </button>
-                    )}
 
                     <hr/>
 
